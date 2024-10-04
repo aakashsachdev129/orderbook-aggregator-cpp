@@ -11,11 +11,13 @@
 using namespace std;
 using json = nlohmann::json;
 
+// Constructor
 Aggregator::Aggregator() {
 	bids_q = OrderBook();
 	offers_q = OrderBook();
 }
 
+// Function to get orderbooks from multiple exchanges
 void Aggregator::get_orderbooks(string add_kraken) {
 	auto config = get_config("config.json");
 
@@ -27,6 +29,7 @@ void Aggregator::get_orderbooks(string add_kraken) {
 	}
 }
 
+// Function to get coinbase orderbook
 void Aggregator::get_coinbase_orderbook(json config) {
 	try {
 		string name = config["coinbase"]["name"];
@@ -44,6 +47,7 @@ void Aggregator::get_coinbase_orderbook(json config) {
 	}
 }
 
+// Function to get gemini orderbook
 void Aggregator::get_gemini_orderbook(json config) {
 	try {
 		string name = config["gemini"]["name"];
@@ -61,6 +65,7 @@ void Aggregator::get_gemini_orderbook(json config) {
 	}
 }
 
+// Function to get kraken orderbook
 void Aggregator::get_kraken_orderbook(json config) {
 	try {
 		string name = config["kraken"]["name"];
@@ -78,6 +83,7 @@ void Aggregator::get_kraken_orderbook(json config) {
 	}
 }
 
+// Function to read values from config file
 json Aggregator::get_config(string config_file) {
 	ifstream jsonfile(config_file);
 	json j;
@@ -85,6 +91,7 @@ json Aggregator::get_config(string config_file) {
 	return j;
 }
 
+// Function to simulate a market order to calculate total cost
 pair<double, double> Aggregator::market_order(double quantity, bool is_buy) {
 	if (is_buy) {
 		return execute_order(quantity, offers_q);
@@ -94,6 +101,7 @@ pair<double, double> Aggregator::market_order(double quantity, bool is_buy) {
 	}
 }
 
+// Function to simulate execution of a market order to calculate total cost
 pair<double, double> Aggregator::execute_order(double quantity, OrderBook& orderbook) {
 	double remaining_quantity = quantity;
 	double total_cost = 0.0;

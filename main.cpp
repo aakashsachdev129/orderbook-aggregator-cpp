@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Function to print the BTC buy summary
 void print_buy_summary(double buy_quantity, double total_buy_cost, double pending_buy_quantity) {
 	cout << endl << "quantity to buy: " << buy_quantity << endl;
 
@@ -20,6 +21,7 @@ void print_buy_summary(double buy_quantity, double total_buy_cost, double pendin
 	cout << "average buying price: " << average_buy_price << endl;
 }
 
+// Function to print the BTC sell summary
 void print_sell_summary(double sell_quantity, double total_sell_cost, double pending_sell_quantity) {
 	cout << endl << "quantity to sell: " << sell_quantity << endl;
 
@@ -36,6 +38,7 @@ void print_sell_summary(double sell_quantity, double total_sell_cost, double pen
 	cout << "average selling price: " << average_sell_price << endl;
 }
 
+// Function to get user input from console
 tuple<double, double, string> get_input_arguments() {
 	double buy_quantity, sell_quantity;
 	string input_buy_quantity, input_sell_quantity, add_kraken;
@@ -87,6 +90,7 @@ tuple<double, double, string> get_input_arguments() {
 	return { buy_quantity, sell_quantity, add_kraken };
 }
 
+// Entry point of the program
 int main(int argc, char* argv[]) {
 
 	double buy_quantity, sell_quantity;

@@ -1,4 +1,3 @@
-// src/exchange.h
 #pragma once
 
 #include <vector>
@@ -10,8 +9,10 @@
 using namespace std;
 using json = nlohmann::json;
 
+// Class representing an Exchange
 class Exchange {
 public:
+	// Constructor
 	Exchange(string name, string api_url,
 		string query_params,
 		string price_key, string quantity_key);
@@ -20,11 +21,13 @@ public:
 		string query_params,
 		int price_index, int quantity_index);
 
-	virtual void get_product_orderbook() = 0;  // Pure virtual function
+	// Function to get the product order book
+	virtual void get_product_orderbook() = 0;
 
 	// Function to add the orders to the OrderBook
 	void add_orders_to_orderbook(OrderBook& bids_q, OrderBook& offers_q);
 
+	// Function to get data from REST API
 	string http_get(string url);
 
 protected:

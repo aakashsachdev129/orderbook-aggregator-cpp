@@ -1,14 +1,11 @@
 #include <string>
 #include <unordered_map>
 #include <stdexcept>
-#include "../Header Files/json.hpp"
 #include "../Header Files/Exchange.h"
 #include <curl/curl.h>
 #include <iostream>
 
 using namespace std;
-using json = nlohmann::json;
-
 
 // Constructor
 Exchange::Exchange(string name, string api_url,
@@ -25,6 +22,7 @@ Exchange::Exchange(string name, string api_url,
 	price_index(price_index), quantity_index(quantity_index),
 	price_key(""), quantity_key(""), orderbook({}) {}
 
+// Function to get data from REST API
 string Exchange::http_get(string url) {
 	CURL* curl;
 	CURLcode res;
